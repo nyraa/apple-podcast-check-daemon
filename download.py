@@ -54,7 +54,7 @@ def download(episode_data, store_path):
 
 def main():
     download_flag = False
-    with open('config.json', 'r') as f:
+    with open('config.json', 'r', encoding='utf-8') as f:
         config = json.load(f)
     for podcast in config['podcasts']:
         store_path = podcast['store_path']
