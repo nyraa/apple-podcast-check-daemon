@@ -8,8 +8,7 @@ headers = {
     "Accept": "*/*",
     "Accept-Language": "zh-TW,zh;q=0.9",
     "Origin": "https://podcasts.apple.com",
-    "Referer": "https://podcasts.apple.com/",
-    "Authorization": "Bearer eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IkNSRjVITkJHUFEifQ.eyJpc3MiOiI4Q1UyNk1LTFM0IiwiaWF0IjoxNjc5MzU2Nzk0LCJleHAiOjE2ODY2MTQzOTQsInJvb3RfaHR0cHNfb3JpZ2luIjpbImFwcGxlLmNvbSJdfQ.7-bg4BXEGfvtQMqhNs2oNqSW_fDoTr6HH1rqKv0o7ORj-6Pwmt4cqdhaEe0uxwmyvPXRaO-aOei6QdW6oX-lzw"
+    "Referer": "https://podcasts.apple.com/"
 }
 
 def get_metadata(url):
@@ -26,6 +25,7 @@ def get_metadata(url):
     enviroment_data = json.loads(urllib.parse.unquote(soup.select('meta[name="web-experience-app/config/environment"]')[0].attrs['content']))
     api_base = enviroment_data['API']['PodcastHost']
     api_token = enviroment_data['MEDIA_API']['token']
+    headers['Authorization'] = 'Bearer ' + api_token
     # print(api_base)
     # print(api_token)
     api_url = api_base + api_href
